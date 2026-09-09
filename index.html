@@ -352,24 +352,6 @@
             <button class="btn btn-primary" onclick="nextStep(4)">Next Step</button>
         </div>
     </div>
-
-    <div class="step-panel" id="step4">
-        <h2>Set Production Timeline</h2>
-        <p class="step-desc">Select how fast you need your pipeline deliverables finalized.</p>
-        <div class="form-group">
-            <label for="timelineSelect">Production Speed</label>
-            <select id="timelineSelect">
-                <option value="express">🚀 Express (Under 10 weeks) — Premium speed modifier</option>
-                <option value="standard" selected>⚡ Standard (10 - 16 weeks)</option>
-                <option value="flexible">📅 Flexible (Scheduled in advance)</option>
-            </select>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="prevStep(3)">Back</button>
-            <button class="btn btn-primary" onclick="generateTiers()">Calculate Scopes</button>
-        </div>
-    </div>
-
     <div class="step-panel" id="step5">
         <h2>Your Tailored Engagement Paths</h2>
         <p class="step-desc">Based on your dynamic configurations, select an alignment model:</p>
@@ -556,7 +538,7 @@
 
     function generateTiers() {
         if(document.getElementById('compSelect')) {
-                       selectionState.complexity = document.getElementById('compSelect').value;
+            selectionState.complexity = document.getElementById('compSelect').value;
         } else {
             selectionState.complexity = 'N/A';
         }
@@ -572,8 +554,9 @@
             alert('Please enter a valid work email address.');
             return;
         }
-        alert(`Thank you! Request logged for ${email}.\nConfiguration configuration saved:\nIndustry: ${selectionState.industry}\nDeliverable: ${selectionState.deliverable}\nComplexity: ${selectionState.complexity}\nScale/Duration: ${selectionState.durationOrScale}\nTimeline: ${selectionState.timeline}`);
+        alert(`Thank you! Request logged for ${email}.\nConfiguration saved:\nIndustry: ${selectionState.industry}\nDeliverable: ${selectionState.deliverable}\nComplexity: ${selectionState.complexity}\nScale/Duration: ${selectionState.durationOrScale}\nTimeline: ${selectionState.timeline}`);
     }
 </script>
 </body>
 </html>
+
