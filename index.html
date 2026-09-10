@@ -377,39 +377,38 @@
         <h2>Your Tailored Engagement Tiers</h2>
         <p class="step-desc">Based on your dynamic configurations, select a model:</p>
         
-        <div class="tiers-container">
-            <div class="tier-card">
-                <div>
-                    <h3>Bespoke Project Engagement</h3>
-                    <p>A single straightforward investment based on a defined project. Perfect for a one-off request and an individual visual asset.</p>
-                </div>
-                <div>
-                    <div class="email-input-wrapper">
-                        <input type="email" placeholder="Enter work email" id="clientEmail" required>
+        <div id="finalOutputContainer">
+            <div class="tiers-container">
+                <div class="tier-card">
+                    <div>
+                        <h3>Bespoke Project Engagement</h3>
+                        <p>A single straightforward investment based on a defined project. Perfect for a one-off request and an individual visual asset.</p>
                     </div>
-                    <button class="tier-cta btn-fixed" onclick="submitQuoteRequest()">Request 48-Hour Fixed Quote</button>
+                    <div>
+                        <button class="tier-cta btn-fixed" onclick="submitQuoteRequest()">Request 48-Hour Fixed Quote</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tier-card featured">
-                <div>
-                    <h3>Dedicated Engagement</h3>
-                    <p>For longer projects with multiple requests we divide the investment according to milestones. Perfect for bigger companies with multiple products requiring multiple visual assets.</p>
+                <div class="tier-card featured">
+                    <div>
+                        <h3>Dedicated Engagement</h3>
+                        <p>For longer projects with multiple requests we divide the investment according to milestones. Perfect for bigger companies with multiple products requiring multiple visual assets.</p>
+                    </div>
+                    <button class="tier-cta btn-sched" onclick="embedBookingPage()">Schedule a Meeting</button>
                 </div>
-                <a href="https://outlook.office.com/bookwithme/user/3051a3db3dc04501aa812fed3eaba972@r25media.com/meetingtype/jLXAq7q7dUmqUHllMmL2_g2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile" target="_blank" class="tier-cta btn-sched">Schedule a Meeting</a>
-            </div>
 
-            <div class="tier-card">
-                <div>
-                    <h3>Enterprise Pipeline Solution</h3>
-                    <p>Priority studio hours secured monthly. Guarantees immediate access to our expert artists, team support, workflow integration or whole pipeline management.</p>
+                <div class="tier-card">
+                    <div>
+                        <h3>Enterprise Pipeline Solution</h3>
+                        <p>Priority studio hours secured monthly. Guarantees immediate access to our expert artists, team support, workflow integration or whole pipeline management.</p>
+                    </div>
+                    <button class="tier-cta btn-sched" onclick="embedBookingPage()">Schedule a Meeting</button>
                 </div>
-                <a href="https://outlook.office.com/bookwithme/user/3051a3db3dc04501aa812fed3eaba972@r25media.com/meetingtype/jLXAq7q7dUmqUHllMmL2_g2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile" target="_blank" class="tier-cta btn-sched">Schedule a Meeting</a>
             </div>
         </div>
         
         <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="prevStep(4)">Reconfigure Options</button>
+            <button class="btn btn-secondary" onclick="resetToTiersOrConfig()">Reconfigure Options</button>
         </div>
     </div>
 </div>
@@ -570,13 +569,29 @@
     }
 
     function submitQuoteRequest() {
-        const email = document.getElementById('clientEmail').value;
-        if(!email || !email.includes('@')) {
-            alert('Please enter a valid work email address.');
-            return;
-        }
-        alert(`Thank you! Request logged for ${email}.\nConfiguration saved:\nIndustry: ${selectionState.industry}\nDeliverable: ${selectionState.deliverable}\nComplexity: ${selectionState.complexity}\nScale/Duration: ${selectionState.durationOrScale}\nTimeline: ${selectionState.timeline}`);
+        const squarespaceFormUrl = "https://www.r25media.com/form"; 
+        
+        const container = document.getElementById('finalOutputContainer');
+        
+        // This clears the pricing cards and smoothly injects your actual Squarespace form
+        container.innerHTML = `
+            <div style="width: 100%; height: 700px; background: transparent; border-radius: 8px; overflow: hidden; animation: fadeIn 0.4s ease forwards;">
+                <iframe src="${squarespaceFormUrl}" width="100%" height="100%" frameborder="0" scrolling="yes" allowfullscreen title="Squarespace Quote Form"></iframe>
+            </div>
+        `;
     }
+
+        function embedBookingPage() {
+        const bookingsUrl = "https://outlook.office.com/book/R25Intro@r25media.com/?ismsaljsauthenabled"; 
+        
+        const container = document.getElementById('finalOutputContainer');
+        container.innerHTML = `
+            <div style="width: 100%; height: 750px; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: fadeIn 0.4s ease forwards;">
+                <iframe src="${bookingsUrl}" width="100%" height="100%" frameborder="0" scrolling="yes" allowfullscreen title="Microsoft Bookings"></iframe>
+            </div>
+        `;
+    }
+
 </script>
 </body>
 </html>
