@@ -293,104 +293,168 @@
 </head>
 <body>
 
-<div class="widget-container">
-    <!-- Progress Tracking Indicator -->
-    <div class="progress-container">
-        <div class="progress-bar-back"></div>
-        <div class="progress-step active" id="p1">1</div>
-        <div class="progress-step" id="p2">2</div>
-        <div class="progress-step" id="p3">3</div>
-        <div class="progress-step" id="p4">4</div>
-        <div class="progress-step" id="p5">R</div>
+<div id="r25-estimator-container">
+  <!-- Progress Bar -->
+  <div class="estimator-progress-container">
+    <div class="estimator-progress-bar" id="estimator-progress"></div>
+  </div>
+
+  <!-- STEP 1: INDUSTRY SELECTION -->
+  <div class="estimator-step active" id="step-1">
+    <h2>1. Select Your Industry</h2>
+    <div class="card-grid">
+      <div class="visual-card" onclick="selectIndustry('maritime')">
+        <div class="card-icon">⚓</div>
+        <h3>Maritime</h3>
+        <p>Large physical scale, fluid physics, and luxury spatial layout.</p>
+      </div>
+      <div class="visual-card" onclick="selectIndustry('automotive')">
+        <div class="card-icon">🚗</div>
+        <h3>Automotive & Tech</h3>
+        <p>Engineering precision, photorealistic lighting, and highly visual.</p>
+      </div>
+      <div class="visual-card" onclick="selectIndustry('film')">
+        <div class="card-icon">🎬</div>
+        <h3>Film & Entertainment</h3>
+        <p>VFX production pipelines, virtual layouts, and cinematic focus.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: DELIVERABLE SELECTION -->
+  <div class="estimator-step" id="step-2">
+    <h2>2. Choose the Primary Deliverable</h2>
+    <div class="form-group">
+      <label for="deliverable-select">Technical Scope:</label>
+      <select id="deliverable-select" onchange="handleDeliverableChange()">
+        <!-- Dynamic Options Injected via JS -->
+      </select>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn-secondary" onclick="prevStep(1)">Back</button>
+      <button class="btn-primary" onclick="nextStep(3)">Next Step</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: SCALE & COMPLEXITY -->
+  <div class="estimator-step" id="step-3">
+    <h2>3. Define Scale & Complexity</h2>
+    
+    <!-- Sub-step A: Animation/Product Presentation -->
+    <div id="sub-step-a" class="sub-step-container">
+      <div class="form-group">
+        <label for="complexity-a">Technical Complexity:</label>
+        <select id="complexity-a">
+          <option value="simple">Simple</option>
+          <option value="average">Average</option>
+          <option value="complex">Complex</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="duration-a">Duration of Production:</label>
+        <select id="duration-a">
+          <option value="30">Up to 30 seconds</option>
+          <option value="60">30 to 60 seconds</option>
+          <option value="90">60 to 90 seconds</option>
+          <option value="120">90 to 120 seconds</option>
+          <option value="121">+120 seconds</option>
+        </select>
+      </div>
     </div>
 
-    <!-- Step 1: Industry Selection -->
-    <div class="step-panel active" id="step1">
-        <h2>Select Your Industry</h2>
-        <p class="step-desc">Choose an environment to cleanly route your project complexity.</p>
-        <div class="grid-options">
-            <div class="card-option" onclick="selectIndustry('maritime')">
-                <span class="icon">⚓</span>
-                <span class="title">Maritime</span>
-            </div>
-            <div class="card-option" onclick="selectIndustry('automotive')">
-                <span class="icon">🚗</span>
-                <span class="title">Automotive & Tech</span>
-            </div>
-            <div class="card-option" onclick="selectIndustry('entertainment')">
-                <span class="icon">🎬</span>
-                <span class="title">Film & Entertainment</span>
-            </div>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-primary" onclick="nextStep(2)" id="next1" disabled style="opacity:0.5;">Next Step</button>
-        </div>
+    <!-- Sub-step B: VR/Configurator -->
+    <div id="sub-step-b" class="sub-step-container">
+      <div class="form-group">
+        <label for="complexity-b">Technical Complexity:</label>
+        <select id="complexity-b">
+          <option value="simple">Simple</option>
+          <option value="average">Average</option>
+          <option value="complex">Complex</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="scale-b">Physical Scale:</label>
+        <select id="scale-b">
+          <option value="small">Small (Leisure Boat or Car)</option>
+          <option value="medium">Medium (Yacht)</option>
+          <option value="big">Big (Shipping Vessel)</option>
+        </select>
+      </div>
     </div>
 
-    <!-- Step 2: Primary Deliverable (Conditional) -->
-    <div class="step-panel" id="step2">
-        <h2>Choose Primary Deliverable</h2>
-        <p class="step-desc">Define the overall mechanical or creative scope of work.</p>
-        <div class="form-group">
-            <label for="deliverableSelect">Deliverable Options</label>
-            <select id="deliverableSelect" onchange="handleDeliverableChange()">
-            </select>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="prevStep(1)">Back</button>
-            <button class="btn btn-primary" onclick="nextStep(3)">Next Step</button>
-        </div>
+    <!-- Sub-step C: Studio Support/Pipeline -->
+    <div id="sub-step-c" class="sub-step-container">
+      <div class="form-group">
+        <label for="project-type-c">Project Type:</label>
+        <select id="project-type-c">
+          <option value="marketing">Marketing Video</option>
+          <option value="short">Animation Short</option>
+          <option value="feature">Feature Film</option>
+        </select>
+      </div>
     </div>
 
-    <div class="step-panel" id="step3">
-        <h2>Define Scale & Complexity</h2>
-        <p class="step-desc">Specify technical specifications and requirements below.</p>
-        <div id="dynamicStep3Fields">
-        </div>
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="prevStep(2)">Back</button>
-            <button class="btn btn-primary" onclick="nextStep(4)">Next Step</button>
-        </div>
+    <div class="nav-buttons">
+      <button class="btn-secondary" onclick="prevStep(2)">Back</button>
+      <button class="btn-primary" onclick="nextStep(4)">Next Step</button>
     </div>
-    <div class="step-panel" id="step5">
-        <h2>Your Tailored Engagement Paths</h2>
-        <p class="step-desc">Based on your dynamic configurations, select an alignment model:</p>
-        
-        <div class="tiers-container">
-            <div class="tier-card">
-                <div>
-                    <h3>Bespoke Project Engagement</h3>
-                    <p>A single straightforward investment based on a defined project. Perfect for a one-off request and an individual visual asset.</p>
-                </div>
-                <div>
-                    <div class="email-input-wrapper">
-                        <input type="email" placeholder="Enter work email" id="clientEmail" required>
-                    </div>
-                    <button class="tier-cta btn-fixed" onclick="submitQuoteRequest()">Request 48-Hour Fixed Quote</button>
-                </div>
-            </div>
+  </div>
 
-            <div class="tier-card featured">
-                <div>
-                    <h3>Dedicated Engagement</h3>
-                    <p>For longer projects with multiple requests we divide the investment according to milestones. Perfect for bigger companies with multiple products requiring multiple visual assets.</p>
-                </div>
-                <a href="YOUR_CALENDAR_URL_HERE" target="_blank" class="tier-cta btn-sched">Schedule a Meeting</a>
-            </div>
-
-            <div class="tier-card">
-                <div>
-                    <h3>Enterprise Pipeline Solution</h3>
-                    <p>Priority studio hours secured monthly. Guarantees immediate access to our expert artists, team support, workflow integration or whole pipeline management.</p>
-                </div>
-                <a href="YOUR_CALENDAR_URL_HERE" target="_blank" class="tier-cta btn-sched">Schedule a Meeting</a>
-            </div>
-        </div>
-        
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="prevStep(4)">Reconfigure Options</button>
-        </div>
+  <!-- STEP 4: TIMELINE -->
+  <div class="estimator-step" id="step-4">
+    <h2>4. Set Production Timeline</h2>
+    <div class="form-group">
+      <label for="timeline-select">Production Schedule:</label>
+      <select id="timeline-select">
+        <option value="express">🚀 Express (Under 10 weeks — Premium Modifier)</option>
+        <option value="standard">⚡ Standard (10 - 16 weeks)</option>
+        <option value="flexible">📅 Flexible (Scheduled in advance)</option>
+      </select>
     </div>
+    <div class="nav-buttons">
+      <button class="btn-secondary" onclick="prevStep(3)">Back</button>
+      <button class="btn-primary" onclick="calculateTiers()">View Pricing Modalities</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: RESULTS SCREEN -->
+  <div class="estimator-step" id="step-5">
+    <h2>Your Estimated Production Modalities</h2>
+    <p class="results-intro">Based on your structural selections, we have mapped three core strategic engagement models tailored for your project scope:</p>
+    
+    <div class="tier-grid">
+      <!-- Tier 1 -->
+      <div class="tier-card">
+        <div class="tier-badge">Option 01</div>
+        <h3>Bespoke Project Engagement</h3>
+        <p class="tier-description">A single, straightforward investment based on a defined project. Perfect for a one-off request and an individual visual asset.</p>
+        <div class="tier-form">
+          <input type="email" id="tier1-email" placeholder="Enter your work email" required />
+          <button class="btn-tier" onclick="submitTier1()">Request 48-Hour Fixed Quote</button>
+        </div>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="tier-card featured">
+        <div class="tier-badge">Option 02</div>
+        <h3>Dedicated Engagement</h3>
+        <p class="tier-description">For longer projects with multiple requests, we divide the investment according to milestones. Perfect for bigger companies with multiple products requiring multiple visual assets.</p>
+        <button class="btn-tier btn-calendar" onclick="redirectToCalendar()">Schedule a Meeting</button>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier-card">
+        <div class="tier-badge">Option 03</div>
+        <h3>Enterprise Pipeline Solution</h3>
+        <p class="tier-description">Priority studio hours secured monthly. Guarantees immediate access to our expert artists, team support, workflow integration, or whole pipeline management.</p>
+        <button class="btn-tier btn-calendar" onclick="redirectToCalendar()">Schedule a Meeting</button>
+      </div>
+    </div>
+    
+    <div class="nav-buttons reset-container">
+      <button class="btn-secondary" onclick="resetEstimator()">🔄 Restart Estimator</button>
+    </div>
+  </div>
 </div>
 
 <script>
