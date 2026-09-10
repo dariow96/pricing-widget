@@ -569,14 +569,29 @@
     }
 
     function submitQuoteRequest() {
-        const squarespaceFormUrl = "https://www.r25media.com/form"; 
+        // 1. Put your actual hidden Squarespace form page link here:
+        const baseFormUrl = "https://www.r25media.com/form"; 
+        
+        // 2. Format a clean summary block of their wizard choices
+        const projectSummary = `Industry: ${selectionState.industry.toUpperCase()}\n` +
+                               `Deliverable: ${selectionState.deliverable}\n` +
+                               `Complexity: ${selectionState.complexity}\n` +
+                               `Scale/Duration: ${selectionState.durationOrScale}\n` +
+                               `Timeline: ${selectionState.timeline}`;
+
+        // 3. Convert the summary into a safe URL parameter format
+        const encodedDetails = encodeURIComponent(projectSummary);
+        
+        // 4. Attach the data to the Squarespace "Project Details" field label query
+        // Squarespace maps spaces in field titles to hyphens or underscores in lowercase parameters
+        const smartFormUrl = `${baseFormUrl}?project-details=${encodedDetails}`;
         
         const container = document.getElementById('finalOutputContainer');
         
-        // This clears the pricing cards and smoothly injects your actual Squarespace form
+        // 5. Inject the Squarespace form iframe pre-loaded with their configuration data
         container.innerHTML = `
-            <div style="width: 100%; height: 700px; background: transparent; border-radius: 8px; overflow: hidden; animation: fadeIn 0.4s ease forwards;">
-                <iframe src="${squarespaceFormUrl}" width="100%" height="100%" frameborder="0" scrolling="yes" allowfullscreen title="Squarespace Quote Form"></iframe>
+            <div style="width: 100%; height: 750px; background: transparent; border-radius: 8px; overflow: hidden; animation: fadeIn 0.4s ease forwards;">
+                <iframe src="${smartFormUrl}" width="100%" height="100%" frameborder="0" scrolling="yes" allowfullscreen title="Squarespace Quote Form"></iframe>
             </div>
         `;
     }
